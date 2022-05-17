@@ -1,0 +1,15 @@
+[package]
+name = "core"
+version = "0.1.0"
+edition = "2021"
+authors = ["Wojciech Zurek <zurek.wojciech2@gmail.com>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = { version = "1.0.137", features = ["derive"] }
+rust_decimal = { version = "1.0.137", features = ["serde-with-str"] }
+nohash-hasher = "0.2.0"
+
+[features]
+#dlq = []

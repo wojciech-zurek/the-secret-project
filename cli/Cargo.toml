@@ -1,0 +1,13 @@
+[package]
+name = "csv-cli-analyzer"
+version = "0.1.0"
+edition = "2021"
+authors = ["Wojciech Zurek <zurek.wojciech2@gmail.com>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+core = { path = "../core" }
+clap = "3.1.18"
+csv = "1.1.6"
+serde = "1.0.137"
