@@ -1,5 +1,6 @@
 //! Core library for calculating states and balance for client account.
-//! All calculation is based on TransactionProcessor trait.
+//! All calculation is based on the TransactionProcessor trait and on the implementation of this trait.
+//! This library contains two processors: BasicProcessor and WrapProcessor
 
 extern crate core;
 

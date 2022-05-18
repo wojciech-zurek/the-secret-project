@@ -16,8 +16,7 @@ pub fn execute(matches: &ArgMatches) -> Result<(), CliError> {
     let tx_iter = read_from_file(file_path)?;
 
     // use default process for transaction
-    // we can easily create new one or use
-    // use core::processor::advance_account_processor::LockAccountTransactionProcessor if we need lock mechanism
+    // we can easily create new one or use WrapProcessor instead
     let proc_iter = process(tx_iter, BasicProcessor::new())?;
 
     // Write csv and use stdout writer.

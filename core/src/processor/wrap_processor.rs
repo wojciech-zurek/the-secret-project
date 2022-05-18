@@ -5,8 +5,9 @@ use crate::account::wrap::WrapAccount;
 use crate::account::basic::BasicAccount;
 use crate::transaction_type::TransactionType::{Chargeback, Deposit, Dispute, Resolve, Withdrawal};
 
-///
-///
+/// WrapTransactionProcessor contains only wrap-account repository.
+/// Wrap account structure contains rest of data.
+/// WrapTransactionProcessor is using WrapAccountRepository and WrapAccount.
 pub struct WrapTransactionProcessor {
     client_repository: WrapAccountRepository,
 

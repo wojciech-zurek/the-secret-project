@@ -76,13 +76,13 @@ cargo test
 10. For csv reads/writes are used: `serde` and `csv` crate.
 11. Because client id / tx id  are primitive types `nohash-hasher` crate has been used for HashMap key hasher for maximum speed lookup. If we need more secure solution we can use `hashbrown` or `ahash` or use default `SipHash` for DOS resistance.
 12. This application contains core library and the cli frontend.
-13. Core library can be easily used for different purpose: web server, web assembly (?), etc...
+13. Core library can be easily used for different purpose: web server, etl, web assembly (?), etc...
 14. Only core library is tested by units test.
 15. Core library contains 2 processor (also as example if we need different strategy)
 - BasicTransactionProcessor (BasicProcessor) -  contains client/account state repository , transaction repository, dispute repository as separate fields. This processor does not contains any lock system.
 - WrapTransactionProcessor(WrapProcessor) - contains only client/account state repository. WrapAccount struct contains transaction repository and dispute repository.
   Based on distribution of data (number of clients, transaction count, how many disputes per client) those processors may produce different performance.
-16. In a multithreaded environment, we must use `Arc<Mutex<...>>` or `Arc<RwLock<..>>` for those processors.
+16. In a multithreaded environment, we must use `Arc<Mutex<...>>` or `Arc<RwLock<..>>` on those processors.
 17. Each transaction may produce different error.
 18. By default, those errors are silenced.
 19. Transaction amount money must be >= 0.
@@ -97,5 +97,5 @@ cargo test
 28. Main bank account/state not exist in this example (credit or debit side). There is no transaction between 2 accounts.
 29. When Dispute occurs only a Resolve or a Chargeback is allowed.
 30. No transaction on account is allowed when account is locked.
-31. No re-dispute allowed.
+31. No re-dispute transaction allowed.
 32. For core crate there is a features `dlq = []` as example od data structure to collect transactions with error.

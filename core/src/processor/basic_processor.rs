@@ -7,7 +7,8 @@ use crate::error::ProcessError;
 use crate::error::ProcessError::{AccountLocked, AmountNotFound, MismatchClientId, OrgTransactionNotFound, TransactionExists, TransactionUnderDispute};
 use crate::transaction_type::TransactionType::{Chargeback, Deposit, Dispute, Resolve, Withdrawal};
 
-///
+/// BasicTransactionProcessor contains separate repositories for account, transaction and dispute
+/// BasicTransactionProcessor is using BasicAccountRepository and BasicAccount.
 pub struct BasicTransactionProcessor {
     // to store client/account state
     client_repository: BasicAccountRepository,
