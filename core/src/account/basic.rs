@@ -38,7 +38,7 @@ pub struct BasicAccount {
     held: Decimal,
 
     // The total funds that are available or held. This should be equal to available +
-    #[allow(dead_code)] // held
+    // held
     // as alternative we can use custom serializer
     // #[serde(serialize_with = "four_place_decimal_serializer")]
     #[serde(with = "rust_decimal::serde::str")]
