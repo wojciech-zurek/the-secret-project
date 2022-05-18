@@ -72,7 +72,7 @@ cargo test
 8. For amount values has been used `rust_decimal` crate.
 9. For parsing command argument has been used `clap` crate.
 10. For csv reads/writes are used: `serde` and `csv` crate.
-11. Because client id / tx id  are primitive types `nohash-hasher` crate has been used for HashMap key hasher for maximum speed lookup. If we need more secure solution we can use `hashbrown` or `ahash` or use default `SipHash` for DOS resistance.
+11. Because client id / tx id  are primitive types `nohash-hasher` crate has been used for HashMap key hasher for maximum speed lookup. If we need more secure solution we can use `FnvHashMap`, `FxHashMap` or `ahash` or use default `SipHash` for DOS resistance.
 12. This application contains core library and the cli frontend.
 13. Core library can be easily used for different purpose: web server, etl, web assembly (?), etc...
 14. Only core library is tested by units test.
