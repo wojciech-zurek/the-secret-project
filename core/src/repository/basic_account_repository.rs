@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use nohash_hasher::IntMap;
 use crate::account::basic::BasicAccount;
 use crate::client::Client;
@@ -13,7 +12,7 @@ pub struct BasicAccountMemoryRepository {
 impl BasicAccountMemoryRepository {
     pub fn new() -> Self {
         BasicAccountMemoryRepository {
-            inner: HashMap::default()
+            inner: IntMap::default()
         }
     }
 

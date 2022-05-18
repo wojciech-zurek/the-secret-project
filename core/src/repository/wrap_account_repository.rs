@@ -1,4 +1,3 @@
-use std::collections::HashMap;
 use nohash_hasher::IntMap;
 use crate::account::wrap::WrapAccount;
 use crate::account::basic::BasicAccount;
@@ -14,7 +13,7 @@ pub struct WrapAccountMemoryRepository {
 impl WrapAccountMemoryRepository {
     pub fn new() -> Self {
         WrapAccountMemoryRepository {
-            inner: HashMap::default()
+            inner: IntMap::default()
         }
     }
 

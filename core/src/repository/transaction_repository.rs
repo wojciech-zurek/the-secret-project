@@ -1,5 +1,4 @@
 use nohash_hasher::IntMap;
-use std::collections::HashMap;
 use crate::Transaction;
 use crate::transaction::TxId;
 
@@ -13,7 +12,7 @@ pub struct TransactionMemoryRepository {
 impl TransactionMemoryRepository {
     pub fn new() -> Self {
         TransactionMemoryRepository {
-            inner: HashMap::default()
+            inner: IntMap::default()
         }
     }
 
