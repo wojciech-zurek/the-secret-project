@@ -17,7 +17,7 @@ use crate::repository::transaction_repository::TransactionMemoryRepository;
 pub mod client;
 pub mod transaction;
 pub mod transaction_type;
-pub (crate) mod repository;
+pub(crate) mod repository;
 pub mod error;
 pub mod processor;
 mod account;

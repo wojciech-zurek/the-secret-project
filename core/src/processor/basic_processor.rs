@@ -384,7 +384,7 @@ mod tests {
     }
 
     #[test]
-    fn deposit_dispute_then_resolve(){
+    fn deposit_dispute_then_resolve() {
         let mut processor = BasicTransactionProcessor::new();
 
         let transaction = Transaction::new(Deposit, 1, 1, Some(100_u64.into()));
@@ -406,7 +406,7 @@ mod tests {
     }
 
     #[test]
-    fn deposit_dispute_then_invalid_dispute(){
+    fn deposit_dispute_then_invalid_dispute() {
         let mut processor = BasicTransactionProcessor::new();
 
         let transaction = Transaction::new(Deposit, 1, 1, Some(100_u64.into()));
@@ -430,7 +430,7 @@ mod tests {
     }
 
     #[test]
-    fn deposit_then_invalid_dispute_tx(){
+    fn deposit_then_invalid_dispute_tx() {
         let mut processor = BasicTransactionProcessor::new();
 
         let transaction = Transaction::new(Deposit, 1, 1, Some(100_u64.into()));
@@ -452,7 +452,7 @@ mod tests {
     }
 
     #[test]
-    fn deposit_dispute_then_invalid_resolve_tx(){
+    fn deposit_dispute_then_invalid_resolve_tx() {
         let mut processor = BasicTransactionProcessor::new();
 
         let transaction = Transaction::new(Deposit, 1, 1, Some(100_u64.into()));
@@ -478,7 +478,7 @@ mod tests {
     }
 
     #[test]
-    fn deposit_dispute_then_invalid_chargeback_tx(){
+    fn deposit_dispute_then_invalid_chargeback_tx() {
         let mut processor = BasicTransactionProcessor::new();
 
         let transaction = Transaction::new(Deposit, 1, 1, Some(100_u64.into()));
@@ -495,7 +495,7 @@ mod tests {
         let account = processor.into_iter().next();
         assert!(account.is_some());
         let account = account.unwrap();
-assert!(!account.locked());
+        assert!(!account.locked());
         assert_eq!(account.total(), &Decimal::from(100_u64));
         assert_eq!(account.available(), &Decimal::from(0_u64));
         assert_eq!(account.held(), &Decimal::from(100_u64));
@@ -504,7 +504,7 @@ assert!(!account.locked());
     }
 
     #[test]
-    fn deposit_withdrawal_dispute_resolve_then_chargeback(){
+    fn deposit_withdrawal_dispute_resolve_then_chargeback() {
         let mut processor = BasicTransactionProcessor::new();
 
         let transaction = Transaction::new(Deposit, 1, 1, Some(Decimal::from_f32(200.00).unwrap()));
