@@ -41,14 +41,14 @@ cargo test
 || cli/src/write.rs: 0/8 +0.00%
 || core/src/account/basic.rs: 107/114 +0.00%
 || core/src/account/wrap.rs: 72/89 +0.00%
-|| core/src/processor/basic_processor.rs: 204/208 +0.00%
+|| core/src/processor/basic_processor.rs: 205/210 +0.00%
 || core/src/processor/wrap_processor.rs: 239/241 +0.00%
-|| core/src/repository/basic_account_repository.rs: 1/5 +0.00%
-|| core/src/repository/transaction_repository.rs: 1/5 +0.00%
+|| core/src/repository/basic_account_repository.rs: 1/6 +0.00%
+|| core/src/repository/transaction_repository.rs: 1/6 +0.00%
 || core/src/repository/wrap_account_repository.rs: 2/5 +0.00%
 || core/src/transaction.rs: 3/9 +0.00%
 ||
-90.37% coverage, 629/696 lines covered, +0% change in coverage
+90.00% coverage, 630/700 lines covered, +0% change in coverage
 ```
 
 ### Assumptions and some info
