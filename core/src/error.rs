@@ -1,3 +1,6 @@
+use std::error::Error;
+use std::fmt::{Display, Formatter};
+
 #[derive(Debug)]
 pub enum ProcessError {
     // Can't process tx: Transaction details not contains amount value
@@ -44,3 +47,11 @@ pub enum ProcessError {
     // Can't process tx: Unexpected error
     UnknownOrUnexpectedError,
 }
+
+impl Display for ProcessError {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
+}
+
+impl Error for ProcessError {}
