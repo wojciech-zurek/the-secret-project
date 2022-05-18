@@ -33,10 +33,14 @@ impl Default for BasicTransactionProcessor {
 
 impl BasicTransactionProcessor {
     pub fn new() -> Self {
+        Self::with_repository(BasicAccountRepository::new(), TransactionRepository::new(), TransactionRepository::new())
+    }
+
+    pub fn with_repository(client_repository: BasicAccountRepository, tx_repository: TransactionRepository, dispute_tx_repository: TransactionRepository) -> Self {
         BasicTransactionProcessor {
-            client_repository: BasicAccountRepository::new(),
-            tx_repository: TransactionRepository::new(),
-            dispute_tx_repository: TransactionRepository::new(),
+            client_repository,
+            tx_repository,
+            dispute_tx_repository,
         }
     }
 
@@ -219,7 +223,7 @@ impl IntoIterator for BasicTransactionProcessor {
 mod tests {
     use rust_decimal::Decimal;
     use rust_decimal::prelude::FromPrimitive;
-    use crate::{BasicTransactionProcessor, Transaction, TransactionProcessor};
+    use crate::{BasicAccountRepository, BasicTransactionProcessor, Transaction, TransactionProcessor, TransactionRepository};
     use crate::transaction_type::TransactionType::{Chargeback, Deposit, Dispute, Resolve, Withdrawal};
 
     #[test]
@@ -567,7 +571,11 @@ mod tests {
 
     #[test]
     fn max_client_deposit_then_withdrawal() {
-        let mut processor = BasicTransactionProcessor::new();
+        let client_repository = BasicAccountRepository::with_capacity(u16::MAX as usize);
+        let tx_repository = TransactionRepository::with_capacity(u16::MAX as usize * 2000);
+        let dispute_tx_repository = TransactionRepository::with_capacity(1);
+
+        let mut processor = BasicTransactionProcessor::with_repository(client_repository, tx_repository, dispute_tx_repository);
 
         let per_client_tx = 1000_u32;
         for client_id in 0..u16::MAX {
@@ -586,7 +594,7 @@ mod tests {
         assert_eq!(account.available(), &Decimal::from(1000_u64));
         assert!(!account.locked());
 
-        let shift= per_client_tx * u16::MAX as u32;
+        let shift = per_client_tx * u16::MAX as u32;
         for client_id in 0..u16::MAX {
             let from = shift + client_id as u32 * per_client_tx;
             for tx_id in from..(from + per_client_tx) {

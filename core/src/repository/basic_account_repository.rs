@@ -1,4 +1,4 @@
-use nohash_hasher::IntMap;
+use nohash_hasher::{BuildNoHashHasher, IntMap};
 use crate::account::basic::BasicAccount;
 use crate::client::Client;
 
@@ -9,10 +9,22 @@ pub struct BasicAccountMemoryRepository {
     inner: IntMap<Client, BasicAccount>,
 }
 
+impl Default for BasicAccountMemoryRepository {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl BasicAccountMemoryRepository {
     pub fn new() -> Self {
         BasicAccountMemoryRepository {
             inner: IntMap::default()
+        }
+    }
+
+    pub fn with_capacity(capacity: usize) -> Self {
+        BasicAccountMemoryRepository {
+            inner: IntMap::with_capacity_and_hasher(capacity, BuildNoHashHasher::default())
         }
     }
 

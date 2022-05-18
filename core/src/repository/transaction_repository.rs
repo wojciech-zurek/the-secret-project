@@ -1,4 +1,4 @@
-use nohash_hasher::IntMap;
+use nohash_hasher::{BuildNoHashHasher, IntMap};
 use crate::Transaction;
 use crate::transaction::TxId;
 
@@ -9,10 +9,22 @@ pub struct TransactionMemoryRepository {
     inner: IntMap<TxId, Transaction>,
 }
 
+impl Default for TransactionMemoryRepository {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl TransactionMemoryRepository {
     pub fn new() -> Self {
         TransactionMemoryRepository {
             inner: IntMap::default()
+        }
+    }
+
+    pub fn with_capacity(capacity: usize) -> Self {
+        TransactionMemoryRepository {
+            inner: IntMap::with_capacity_and_hasher(capacity,  BuildNoHashHasher::default())
         }
     }
 
