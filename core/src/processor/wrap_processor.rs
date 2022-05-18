@@ -573,4 +573,44 @@ mod tests {
         assert_eq!(account.available(), &Decimal::from(0_u64));
         assert!(!account.locked());
     }
+
+    #[test]
+    fn max_client_deposit_then_withdrawal() {
+        let mut processor = WrapTransactionProcessor::new();
+
+        let per_client_tx = 1000_u32;
+        for client_id in 0..u16::MAX {
+            let from = client_id as u32 * per_client_tx;
+            for tx_id in from..(from + per_client_tx) {
+                let transaction = Transaction::new(Deposit, client_id, tx_id, Some(client_id.into()));
+                let r = processor.process(transaction);
+                assert!(r.is_ok());
+            }
+        }
+
+        let account = processor.client_repository.find_by_client(1);
+        //
+        assert_eq!(account.total(), &Decimal::from(1000_u64));
+        assert_eq!(account.held(), &Decimal::from(0_u64));
+        assert_eq!(account.available(), &Decimal::from(1000_u64));
+        assert!(!account.locked());
+
+        let shift= per_client_tx * u16::MAX as u32;
+        for client_id in 0..u16::MAX {
+            let from = shift + client_id as u32 * per_client_tx;
+            for tx_id in from..(from + per_client_tx) {
+                let transaction = Transaction::new(Withdrawal, client_id, tx_id, Some(client_id.into()));
+                let r = processor.process(transaction);
+                assert!(r.is_ok());
+            }
+        }
+
+        let account = processor.client_repository.find_by_client(1);
+
+        assert_eq!(account.total(), &Decimal::from(0_u64));
+        assert_eq!(account.held(), &Decimal::from(0_u64));
+        assert_eq!(account.available(), &Decimal::from(0_u64));
+        assert!(!account.locked());
+    }
+
 }

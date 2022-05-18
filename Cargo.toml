@@ -1,3 +1,6 @@
 [workspace]
 members = ["core", "cli"]
 default-members = ["cli"]
+
+[profile.test]
+opt-level = 3

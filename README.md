@@ -35,22 +35,20 @@ cargo test
 ```
  Coverage Results:
 || Tested/Total Lines:
-|| cli/src/cli.rs: 0/4 +0.00%
-|| cli/src/error.rs: 0/18 +0.00%
-|| cli/src/main.rs: 0/3 +0.00%
-|| cli/src/process.rs: 0/14 +0.00%
-|| cli/src/reader.rs: 0/7 +0.00%
-|| cli/src/write.rs: 0/10 +0.00%
-|| core/src/account/basic.rs: 134/146 +0.00%
-|| core/src/account/wrap.rs: 105/109 +0.00%
-|| core/src/processor/basic_processor.rs: 276/289 +0.00%
-|| core/src/processor/wrap_processor.rs: 302/313 +0.00%
-|| core/src/repository/basic_account_repository.rs: 6/8 +0.00%
-|| core/src/repository/transaction_repository.rs: 10/10 +0.00%
-|| core/src/repository/wrap_account_repository.rs: 7/7 +0.00%
-|| core/src/transaction.rs: 9/9 +0.00%
+|| cli/src/error.rs: 0/1 +0.00%
+|| cli/src/process.rs: 0/6 +0.00%
+|| cli/src/reader.rs: 0/5 +0.00%
+|| cli/src/write.rs: 0/8 +0.00%
+|| core/src/account/basic.rs: 107/114 +0.00%
+|| core/src/account/wrap.rs: 72/89 +0.00%
+|| core/src/processor/basic_processor.rs: 204/208 +0.00%
+|| core/src/processor/wrap_processor.rs: 239/241 +0.00%
+|| core/src/repository/basic_account_repository.rs: 1/5 +0.00%
+|| core/src/repository/transaction_repository.rs: 1/5 +0.00%
+|| core/src/repository/wrap_account_repository.rs: 2/5 +0.00%
+|| core/src/transaction.rs: 3/9 +0.00%
 ||
-89.65% coverage, 849/947 lines covered, +0% change in coverage
+90.37% coverage, 629/696 lines covered, +0% change in coverage
 ```
 
 ### Assumptions and some info
